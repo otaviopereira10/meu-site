@@ -1,0 +1,308 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 70% 2%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 25 95% 53%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 262 83% 58%;
+
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(249, 115, 22, 0.1) 0%, transparent 25%);
+    background-attachment: fixed;
+  }
+
+  /* Glass morphism styles */
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-lg;
+  }
+  
+  /* Reveal animation for text sections */
+  .reveal {
+    position: relative;
+    transform: translateY(40px);
+    opacity: 0;
+    transition: all 0.8s ease;
+  }
+  
+  .reveal.active {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  
+  /* Typing animation container */
+  .typing-container {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid hsl(var(--primary));
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+  
+  /* Skills card hover animation */
+  .skill-card {
+    @apply transition-all duration-300 hover:shadow-lg;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-5px) rotateY(10deg);
+    @apply border-primary/50;
+  }
+  
+  /* Project card hover effects */
+  .project-card {
+    @apply transition-all duration-300;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .project-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 30px rgba(124, 58, 237, 0.2);
+  }
+  
+  /* Social icons hover animation */
+  .social-icon {
+    @apply transition-all duration-300;
+  }
+  
+  .social-icon:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.2);
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.5);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.7);
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* 3D Card Container */
+  .card3d-container {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 200px;
+    height: 300px;
+    perspective: 1000px;
+    z-index: 100;
+  }
+
+  @media (max-width: 768px) {
+    .card3d-container {
+      position: relative;
+      top: 0;
+      right: 0;
+      margin: 2rem auto;
+    }
+  }
+  
+  /* Tech grid patterns */
+  .tech-grid:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(rgba(124, 58, 237, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: -1;
+  }
+  
+  /* Glowing effects */
+  .glow {
+    position: relative;
+  }
+  
+  .glow::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: inherit;
+    z-index: -1;
+    animation: pulse-glow 2s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+    opacity: 0;
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.05);
+    }
+  }
+  
+  /* Animated gradient text */
+  .gradient-text {
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientText 5s ease infinite;
+  }
+  
+  @keyframes gradientText {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Cyber lines, reminiscent of circuit boards */
+  .cyber-lines {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cyber-lines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(90deg, transparent 0%, transparent 49%, rgba(124, 58, 237, 0.2) 50%, transparent 51%, transparent 100%),
+      linear-gradient(transparent 0%, transparent 49%, rgba(124, 58, 237, 0.2) 50%, transparent 51%, transparent 100%);
+    background-size: 50px 50px;
+    z-index: -1;
+  }
+}
+
+/* Section spacing */
+.section {
+  @apply py-16 px-4 md:px-8 max-w-7xl mx-auto;
+}
+
+/* Section headings */
+.section-heading {
+  @apply text-3xl md:text-4xl font-display font-bold mb-8 text-center relative;
+}
+
+.section-heading::after {
+  content: "";
+  @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-primary rounded-full;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.7);
+}
+
+/* For ThreeJS canvas */
+#canvas-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Neon text effect */
+.neon-text {
+  color: #fff;
+  text-shadow: 
+    0 0 5px rgba(124, 58, 237, 0.8),
+    0 0 10px rgba(124, 58, 237, 0.5),
+    0 0 15px rgba(124, 58, 237, 0.3);
+}
+
+/* Futuristic button hover effect */
+.btn-tech {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-tech::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.btn-tech:hover::before {
+  left: 100%;
+}
